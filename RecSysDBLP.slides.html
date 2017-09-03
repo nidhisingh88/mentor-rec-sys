@@ -11936,12 +11936,40 @@ We use Python's NLTK package to perfrom text transformation and corpus preparati
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Corpus-Preparation">Corpus Preparation<a class="anchor-link" href="#Corpus-Preparation">&#182;</a></h3><p>There are 2 main decisions that entail corpus preparation in Information Retrieval:</p>
+<h3 id="Corpus-Preparation">Corpus Preparation<a class="anchor-link" href="#Corpus-Preparation">&#182;</a></h3><p>There is a main design decisions that entail corpus preparation in Information Retrieval:</p>
 <ul>
 <li>Document based - this approach first ranks documents in the corpus given a query topic and then find associate candidates. So corpus comprises of every document, in our case, publication titles are documents.</li>
 <li>Candidate based - in this approach we directly model the profile of the candidate based on all documents associated with the candidate and estimate ranking score according to profile in response to a user query.</li>
 </ul>
 <p>Since our system is query independent, we choose candidate based model. Also for simplification, as the topics extracted could be represented as expertise for the candidate. Furthermore, LDA algorithm works better for longer documents.</p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Corpus-Preparation-and-Topic-modeling">Corpus Preparation and Topic modeling<a class="anchor-link" href="#Corpus-Preparation-and-Topic-modeling">&#182;</a></h3><ul>
+<li>We identify and collect all publication titles of the author</li>
+<li>Create a single document for each author</li>
+<li><p>Combine all documents to create corpus</p>
+</li>
+<li><p>We use Python's Gensim's package LDA (Latent Dirichlet Allocation Model) for topic modeling on the corpus.</p>
+</li>
+<li>We choose number of topics as 20 and iteration passes as 5.<ul>
+<li>number of topics were judged by running few iterations with 10, 15 and 20. 20 gave better distribution of terms over topics.</li>
+<li>5 for no. of passes is chosen randomly as covergence point was computationally intensive to calculate.</li>
+</ul>
+</li>
+<li>LDA result of topics is further used to identify probable topics for each document, this is then saved as author-topic probability.</li>
+<li>This choice is influenced by :<ul>
+<li>LDA produces interpretable,semantically coherent topics, which can be examined by listing the most probable words for each topic.</li>
+<li>Gensim LDA has a multi-core variant, since we have 1.9 million documents in our corpus and topic modeling is computatinally intensive, this choice is vital. </li>
+</ul>
+</li>
+</ul>
 
 </div>
 </div>
@@ -11951,7 +11979,51 @@ We use Python's NLTK package to perfrom text transformation and corpus preparati
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Expert-Modelling">Expert Modelling<a class="anchor-link" href="#Expert-Modelling">&#182;</a></h2><p>Expertise can be defined as combination of several topics, hence a candidate can be represented in terms of mixing proportions of multiple topics.</p>
+<h2 id="Author-expert-profile">Author expert profile<a class="anchor-link" href="#Author-expert-profile">&#182;</a></h2><p>Expertise can be defined as combination of several topics, hence a candidate can be represented in terms of mixing proportions of multiple topics.</p>
+<ul>
+<li>We take the results of document-topic distribution as the input to the expert model for the author.</li>
+<li>The topics are considered as the expertise topics of associated probabilities.</li>
+<li><p>Expertise level can be further calculated by :</p>
+<ul>
+<li>number of total publications, publication per topic is more useful but not available in our scenario.</li>
+<li>co-authorship - each publication is authored by one or more authors, less the number of authors more the expert level of the author.
+So if paper has 4 author, each author gets a co-author ship score of 1/4 (0.25)</li>
+</ul>
+</li>
+<li><p>We construct author profile feature vector, with topics as features.</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Mentor-recommendations">Mentor recommendations<a class="anchor-link" href="#Mentor-recommendations">&#182;</a></h2><ul>
+<li>For a mentee to be recommended a mentor, we need to model their preferences. In our case, we have identified a list of topics from the corpus. These can be used as topics to be get user preference.</li>
+<li>From this preference, we construct a mentee preference feature vector.</li>
+<li>To identify mentors similar to preference , there are 2 key decisions:<ul>
+<li>similarity measure - we use cosine similarity</li>
+<li>similarity threshold - this is randomly chosen to be 0.5 but needs to be adjusted with evaluations of the results.</li>
+</ul>
+</li>
+<li>We compute the cosine similarity between the mentor profiles and mentee profile, we output the ones with similarity value greater than threshold</li>
+</ul>
+<p>Recommendations evaluation</p>
+<ul>
+<li>As first part of evaluations we need to create ground truth:<ul>
+<li>Pick sample users, say 100</li>
+<li>Recruit evaluators, say 3 (atleast more than 2 to cover for evaluator's subjective bias)</li>
+<li>Run one query (user preference) per evaluator.</li>
+<li>For this query mark each sampled user as relevant or not relevant. This can be done by looking up author's name on scholar websites to retrieve their interests and other profile details.</li>
+</ul>
+</li>
+<li>These scores can be used to fit a model on probability of relevant value, for P(relevant)&gt;0.5 we can use the corresponding cosine similarity threshold values.</li>
+<li>With ground truth, we can use IR evaluation methods like Precision, recall and RMSE.</li>
+</ul>
 
 </div>
 </div>
