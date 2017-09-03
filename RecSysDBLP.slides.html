@@ -11859,7 +11859,21 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Mentor-Mentee-Recommendation-System">Mentor-Mentee Recommendation System<a class="anchor-link" href="#Mentor-Mentee-Recommendation-System">&#182;</a></h1>
+<h1 id="Mentor-Mentee-Recommendation-System">Mentor-Mentee Recommendation System<a class="anchor-link" href="#Mentor-Mentee-Recommendation-System">&#182;</a></h1><h3 id="Nidhi-Singh">Nidhi Singh<a class="anchor-link" href="#Nidhi-Singh">&#182;</a></h3><h3 id="8th-September-2017">8th September 2017<a class="anchor-link" href="#8th-September-2017">&#182;</a></h3>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Problem-Statement">Problem Statement<a class="anchor-link" href="#Problem-Statement">&#182;</a></h2><ul>
+<li>Design a system for a user who is looking for an expert(s) based on his certain preferences. The experts are refered to as mentors and the expert seekers are mentees. </li>
+<li>In our scenario, mentors are authors in DBLP(Database and lnaguage programming) bibliographic reference data and their expertise is inferred from title of their publications.</li>
+<li>Mentees are users of the system who are recommended Mentors based on their captured preferences.</li>
+</ul>
+
 </div>
 </div>
 </div></section></section><section><section>
@@ -11872,32 +11886,75 @@ a.anchor-link {
 
 </div>
 </div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span> 
-</pre></div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Structure-of-DBLP-data-set">Structure of DBLP data set<a class="anchor-link" href="#Structure-of-DBLP-data-set">&#182;</a></h2><p><img src="images/pub_description.png" alt="alt text" title="dblp"></p>
 
 </div>
 </div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span> 
-</pre></div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Parse-and-store-DBLP">Parse and store DBLP<a class="anchor-link" href="#Parse-and-store-DBLP">&#182;</a></h2><ul>
+<li>DBLP, a data set for bibliographic information on computer science publications </li>
+<li>Our system uses the latest copy which indexes 3.7 million publication written in English by ~2 million authors.</li>
+<li>We utilize Python's SAX xml parser to read the required fields for our scenario and store it in appropriate tables.</li>
+<li>PostGreSQL is used for storing the parsed data.</li>
+</ul>
+<p>Key challenge</p>
+<ul>
+<li>Author disambiguation - Authors with same name in the collection and also few Publications with same name authors
+Since we did not capture extra information of the authors which could help in disambiguation, our system assumes author name to be unique.</li>
+<li>Publication fields duplication - Publications with multiple years
+We assume Publication attributes to be unique</li>
+</ul>
 
 </div>
 </div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Topic-Extraction">Topic Extraction<a class="anchor-link" href="#Topic-Extraction">&#182;</a></h2><p>DBLP data set does not contain keywords, paper abstract or full text, so the topics are extracted from titles.
+We use Python's NLTK package to perfrom text transformation and corpus preparation.
+<img src="images/topics.png" alt="alt text" title="dblp"></p>
 
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Corpus-Preparation">Corpus Preparation<a class="anchor-link" href="#Corpus-Preparation">&#182;</a></h3><p>There are 2 main decisions that entail corpus preparation in Information Retrieval:</p>
+<ul>
+<li>Document based - this approach first ranks documents in the corpus given a query topic and then find associate candidates. So corpus comprises of every document, in our case, publication titles are documents.</li>
+<li>Candidate based - in this approach we directly model the profile of the candidate based on all documents associated with the candidate and estimate ranking score according to profile in response to a user query.</li>
+</ul>
+<p>Since our system is query independent, we choose candidate based model. Also for simplification, as the topics extracted could be represented as expertise for the candidate. Furthermore, LDA algorithm works better for longer documents.</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Expert-Modelling">Expert Modelling<a class="anchor-link" href="#Expert-Modelling">&#182;</a></h2><p>Expertise can be defined as combination of several topics, hence a candidate can be represented in terms of mixing proportions of multiple topics.</p>
+
+</div>
+</div>
 </div></section></section>
 </div>
 </div>
