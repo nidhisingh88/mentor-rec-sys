@@ -1,1 +1,160 @@
+<!DOCTYPE html>
+	<html class="sl-root decks export offline loaded">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Mentor-Mentee Recommendation System: Slides</title>
+		<meta name="description" content="Slides">
 
+		<link rel="stylesheet" type="text/css" href="lib/offline-v2.css">
+
+
+
+	</head>
+	<body class="reveal-viewport theme-font-montserrat theme-color-blue-yellow">
+		<div class="reveal">
+			<div class="slides">
+				<section data-id="49a595d4f60d8f3839796adee017028a"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 172px; height: auto;" data-block-id="18f2784bf4d59d78d7d7d9666b9bc2bb"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" data-gramm_id="3d908212-1821-195d-0749-08d3c076e27b" data-gramm="true" data-gramm_editor="true" style="z-index: 11; border-width: 1px;">
+<h1>Mentor-Mentee Recommendation System</h1>
+
+<p>Nidhi Singh</p>
+
+<p>8th September, 2017</p>
+</div></div></section><section data-id="514396a554d3f59b57da35a365c1765d"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 189px; height: auto;" data-block-id="4a14ffd4c63bd42943a563ab81183446"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;" dir="ui" data-gramm_id="35c4d3dc-c5cc-d587-bb5e-3bb85a54b001" data-gramm="true" data-gramm_editor="true"><h2>Problem Statement</h2></div></div>
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 263px; height: auto;" data-block-id="5b0b35be7bce9bc4b1f9ad5b647afbaa"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<ul>
+	<li class="fragment" data-fragment-index="0">Design a system for a user who is looking for an expert(s) based on his certain preferences. The experts are refered to as mentors and the expert seekers are mentees. </li>
+	<li class="fragment" data-fragment-index="1">In our scenario, mentors are authors in DBLP(Database and language programming) bibliographic reference data and their expertise is inferred from title of their publications.</li>
+	<li class="fragment" data-fragment-index="2">Mentees are users of the system who are recommended Mentors based on their captured preferences.</li>
+</ul>
+</div></div></section><section data-id="b928c4e92884ab289250ffd2f4bbfef5"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;" data-block-id="4231fc0cfe1637efdd68e9cbda3b0e07"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;" data-gramm_id="2f2310c2-61c0-63fc-2ede-18aa039f8282" data-gramm="true" data-gramm_editor="true">
+<h2>System Process Flow​</h2>
+</div></div>
+<div class="sl-block" data-block-type="image" style="width: 710px; height: 439px; left: 125px; top: 173px;" data-block-id="af8c4473588fb02f852c8b1e48033f11"><div class="sl-block-style" style="z-index: 11; opacity: 0.9;"><div class="sl-block-content" style="z-index: 11;"><img data-natural-width="1201" data-natural-height="743" style="" data-lazy-loaded="" data-src="mentor-mentee-recommendation-system/cbe2b4fc9f6e728e3f2eb742d93c6ce9.png"></div></div></div></section><section class="stack" data-id="bdaaccf7cf86bd27c463ca3cbbd2c294"><section data-id="29cd1c1963eb72ba91f924df898bd59b"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;" data-block-id="2c88f814126e7414a5fd874bda8cef2b"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
+<h2>Structure of DBLP Data set</h2>
+</div></div>
+<div class="sl-block" data-block-type="image" style="width: 710px; height: 365px; left: 125px; top: 210px;" data-block-id="dfbf36d7665c2b2cea3684d31521836c"><div class="sl-block-content" style="z-index: 11;"><img style="" data-natural-width="1364" data-natural-height="701" data-lazy-loaded="" data-src="mentor-mentee-recommendation-system/a7f11b3a088a19f8b44db4cc11d148b7.png"></div></div></section><section data-id="9e15291b758114a50223d02c55f72e06"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 189px; height: auto;" data-block-id="3540baa1fa34b74a7c056bda73d6bd91"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;" data-gramm_id="8d1aaeb1-dbbe-eefe-d084-8e6886043220" data-gramm="true" data-gramm_editor="true">
+<h2>Parse and store DBLP entries</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 263px; height: auto;" data-block-id="afdc00eef8e4e10f647e6d1e73033213"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" data-gramm_id="fd1a228c-39e2-8b15-7f7f-1bb4a1d508ea" data-gramm="true" data-gramm_editor="true">
+<ul>
+	<li class="fragment" data-fragment-index="0">DBLP, a data set for bibliographic information on computer science publications </li>
+	<li class="fragment" data-fragment-index="0">Our system uses the latest copy which indexes 3.7 million publication written in English by ~2 million authors.</li>
+	<li class="fragment" data-fragment-index="1">We utilize Python's SAX xml parser to read the required fields for our scenario and store it in appropriate tables.</li>
+	<li class="fragment" data-fragment-index="2">PostGreSQL is used for storing the parsed data.</li>
+</ul>
+</div></div></section><section data-id="10c0ab864ffdecd5a17717ac6f5d254c"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 189px; height: auto;" data-block-id="43a46f9c36c050716aeb7bceeb2f21b8"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;" data-gramm_id="3449ddf6-02ae-9c42-f61f-ffd6786e37f4" data-gramm="true" data-gramm_editor="true">
+<h2>Key challenges in parsing</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 263px; height: auto;" data-block-id="f6e0ba927f1d3f09aed9ab185db68a86"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" data-gramm_id="ee399bde-933d-0ca5-f6ce-b0975d8627fd" data-gramm="true" data-gramm_editor="true">
+<ul>
+	<li>Author disambiguation - Authors with same name in the collection and also few Publications with same name authors Since we did not capture extra information of the authors which could help in disambiguation, our system assumes author name to be unique.</li>
+	<li>Publication fields duplication - Publications with multiple years We assume Publication attributes to be unique</li>
+</ul>
+</div></div></section></section><section class="stack" data-id="2eeff0f5ab3ddb0729e78506ea2369f9"><section data-id="46b6174746e136c872f580bd70f600c1"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;" data-block-id="af751254bf2843cf13cf458f886dbd4a"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
+<h2>Topic Extraction</h2>
+
+<p><span style="text-align:left">DBLP data set does not contain keywords, paper abstract or full text, so the topics are extracted from titles. We use Python's NLTK package to perfrom text transformation and corpus preparation.</span></p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="width: 1007px; height: 201px; left: 0px; top: 350px;" data-block-id="07ca472340fe836e6a26c8c6b9fd5a64"><div class="sl-block-content" style="z-index: 11;"><img data-natural-width="1674" data-natural-height="334" style="" data-src="mentor-mentee-recommendation-system/98e1e8425af82f3256c0b494ac82f828.png"></div></div></section><section data-id="fc8518e3865c98e1f045ab1ef3eb264f"><div class="sl-block" data-block-type="text" style="width: 806px; left: 74px; top: 70px; height: auto;" data-block-id="a834f2b2189838e30960655057d2f788"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
+<h2>Corpus preparation</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 74px; top: 171px; height: auto;" data-block-id="0b2727862eb07bc1356d267faf4e3370"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<p style="text-align:left"><span style="font-size:0.9em">There is a main design decisions that entail corpus preparation in Information Retrieval:</span></p>
+
+<ul>
+	<li><span style="font-size:0.9em">Document based - this approach first ranks documents in the corpus given a query topic and then find associate candidates. So corpus comprises of every document, in our case, publication titles are documents.</span></li>
+	<li><span style="font-size:0.9em">Candidate based - in this approach we directly model the profile of the candidate based on all documents associated with the candidate and estimate ranking score according to profile in response to a user query.</span></li>
+	<li>
+	<p style="text-align:left"><span style="font-size:0.9em">Since our system is query independent, we choose candidate based model. Also for simplification, as the topics extracted could be represented as expertise for the candidate. Furthermore, LDA algorithm works better for longer documents.</span></p>
+	</li>
+</ul>
+</div></div></section><section data-id="a0e01e166912efe84df430fd4fc5f118"><div class="sl-block" data-block-type="text" style="width: 806px; left: 74px; top: 70px; height: auto;" data-block-id="54afdb314488e249c79da9f923581467"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;" data-gramm_id="c1d693b6-11b6-e633-92bf-aedfaf63f02b" data-gramm="true" data-gramm_editor="true">
+<h2>Corpus preparation</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 74px; top: 171px; height: auto;" data-block-id="d51ef2724834bcbc2e6713bacd760259"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" data-gramm_id="4e24a287-0dc4-059a-ab22-27bbd0f32acf" data-gramm="true" data-gramm_editor="true" dir="ui">
+<p style="text-align:left"> </p>
+
+<p style="text-align:left"><span style="font-size:0.9em">Since our system is query independent, we choose candidate based model. Also for simplification, as the topics extracted could be represented as expertise for the candidate. Furthermore, LDA algorithm works better for longer documents.</span></p>
+</div></div></section><section data-id="03e07560d86ee6417ab1cf002e8bcf2d"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 70px; height: auto;" data-block-id="a9be3b67450a995738c8949bc7dcc669"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;" data-gramm_id="fdbe58fc-0afd-ac80-9c95-7d51ff07f860" data-gramm="true" data-gramm_editor="true">
+<h2>Topic modeling</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 80px; top: 170px; height: auto;" data-block-id="519b1c1ca5729ad2129d1097207b7b35"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" data-gramm_id="2ecd2779-a5e5-a752-c264-0f75458b34fd" data-gramm="true" data-gramm_editor="true">
+<ul>
+	<li class="fragment" data-fragment-index="0">
+	<p>We use Python's Gensim's package LDA (Latent Dirichlet Allocation Model) for topic modeling on the corpus.</p>
+	</li>
+	<li class="fragment" data-fragment-index="1">We choose number of topics as 20 and iteration passes as 5.
+	<ul>
+		<li>number of topics were judged by running few iterations with 10, 15 and 20. 20 gave better distribution of terms over topics.</li>
+		<li>5 for no. of passes is chosen randomly as covergence point was computationally intensive to calculate.</li>
+	</ul>
+	</li>
+	<li class="fragment" data-fragment-index="2">LDA result of topics is further used to identify probable topics for each document, this is then saved as author-topic probability.</li>
+</ul>
+</div></div></section><section data-id="19a21a9169f021272f183999edeecb73"><div class="sl-block" data-block-type="text" style="width: 806px; left: 67px; top: 70px; height: auto;" data-block-id="ab5491b0a0208dd28f9bc14ecd932255"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;" data-gramm_id="7e266c7c-8e7f-f8ab-5909-b4bc6f232783" data-gramm="true" data-gramm_editor="true">
+<h2>Why LDA?</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 263px; height: auto;" data-block-id="5e468362d71c34085f489fe017a545dd"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" data-gramm_id="4a824f8a-8462-305e-f1b3-970513161be4" data-gramm="true" data-gramm_editor="true">
+<ul>
+	<li>This choice is influenced by :
+	<ul>
+		<li>LDA produces interpretable,semantically coherent topics, which can be examined by listing the most probable words for each topic.</li>
+		<li>Gensim LDA has a multi-core variant, since we have 1.9 million documents in our corpus and topic modeling is computatinally intensive, this choice is vital.</li>
+	</ul>
+	</li>
+</ul>
+</div></div></section></section>
+			</div>
+		</div>
+
+		<script>
+			var SLConfig = {"deck": {"id":1066020,"slug":"mentor-mentee-recommendation-system","title":"Mentor-Mentee Recommendation System","description":"","width":960,"height":700,"visibility":"all","published_at":"2017-09-04T14:08:27.662Z","sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/ed477e81902ebcb09f641bb5a4d93912/thumb.jpg?1462900943","view_count":2,"user":{"id":752811,"username":"nidhisingh88","name":"Nidhi Singh","description":"","thumbnail_url":"https://www.gravatar.com/avatar/d77e92bc3de491760615406c356cc19b?s=140\u0026d=https%3A%2F%2Fs3.amazonaws.com%2Fstatic.slid.es%2Fimages%2Fdefault-profile-picture.png","paid":true,"pro":false,"lite":true,"team_id":null,"settings":{"id":603260,"present_controls":true,"present_upsizing":true,"present_pointer":false,"present_notes":true}},"background_transition":"slide","transition":"slide","theme_id":null,"theme_font":"montserrat","theme_color":"blue-yellow","auto_slide_interval":0,"comments_enabled":false,"forking_enabled":true,"rolling_links":false,"center":false,"should_loop":false,"share_notes":false,"slide_number":true,"rtl":false,"version":2,"collaborative":null,"deck_user_editor_limit":1,"data_updated_at":1504694871720,"font_typekit":null,"font_google":null,"notes":{}}};
+
+
+			// Use local fonts
+			SLConfig.fonts_url = 'lib/fonts/';
+		</script>
+
+		<script src="lib/head.min.js"></script>
+		<script src="lib/reveal.min.js"></script>
+		<script src="lib/offline.js"></script>
+
+		<!-- Initialize the presentation -->
+		<script>
+			Reveal.initialize({
+				width: 960,
+				height: 700,
+				margin: 0.05,
+
+				controls: true,
+				progress: true,
+				history: true,
+				mouseWheel: false,
+				showNotes: false,
+				slideNumber: true,
+
+				autoSlide: 0 || 0,
+				autoSlideStoppable: true,
+
+				center: false,
+				loop: false,
+				rtl: false,
+
+				transition: "slide",
+				backgroundTransition: "slide",
+
+				dependencies: [
+					{ src: 'lib/reveal-plugins/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/reveal-plugins/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/reveal-plugins/highlight/highlight.js', async: true, callback: function() { hljs.initHighlighting(); hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/reveal-plugins/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+		</script>
+
+		
+
+	</body>
+</html>
